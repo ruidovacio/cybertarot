@@ -1,6 +1,5 @@
 # cybertarot
-Readings of tarot in cards in different spreads with interpretations available,
-while trying to focus on the aesthetic and historical aspect of the cards.
+This project is focused on the aesthetic/historical aspect of the cards. The idea is to get randomized readings in different spreads and access to symbolic data from each card.
 
 Pretty much still WIP.
 

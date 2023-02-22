@@ -1,5 +1,6 @@
 # cybertarot
-Readings of tarot in cards in different spreads with interpretations available.
+Readings of tarot in cards in different spreads with interpretations available,
+while trying to focus on the aesthetic and historical aspect of the cards.
 
 Pretty much still WIP.
 

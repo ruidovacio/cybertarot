@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knuth-shuffle/1.0.8/index.min.js"
+        integrity="sha512-qATy7psZbGGnnfxVbxzRNBKp72F0+itAkN/pvzv0neBXJgJMvGWxG36qXK1PHWxfHTRbQmf97Fmwm4nIgn2iLw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>cybertarot</title>
+</head>
+
+<body>
+    <header>
+        <h1>cybertarot</h1>
+    </header>
+    <div class="pagina">
+        <div class="container">
+
+        </div>
+    </div>
+
+    <script>
+
+        const container = document.querySelector('.container');
+
+        cargarCartas();
+
+        async function cargarCartas() {
+            const response = await fetch('tarot-images.json');
+            const tarot = await response.json();
+            //console.log(tarot.cards);
+
+            const mayores = tarot.cards.filter(carta => carta.arcana == 'Major Arcana');
+            //console.log(mayores);
+            const menores = tarot.cards.filter(carta => carta.arcana == 'Minor Arcana');
+            //console.log(menores);
+            const baraja = mezclarCartas(tarot.cards);
+            console.log(baraja);
+            hacerTablaTres(baraja);
+        }
+
+        async function hacerTablaTres(baraja) {
+            const row = document.createElement('div');
+            row.classList.add('row');
+
+            for (let i = 0; i < 3; i++) {
+                const col = document.createElement('div');
+                col.classList.add('col-sm-4');
+
+                const imagen = document.createElement('img');
+                imagen.src = "cards/" + baraja[i].img;
+                col.appendChild(imagen);
+                row.appendChild(col);
+            }
+
+            container.appendChild(row);
+        }
+
+        async function hacerTablaCuatro(baraja) {
+            //crear un array vacío
+            const cuadricula = [];
+            for (let i = 0; i < 9; i++) {
+                cuadricula.push("null");
+            }
+            //cada dos índices, empezando desde el 1, se llenan los espacios correspondientes
+            //a las cuatro puntas de esta tirada
+            let numerador = 1;
+            for (let z = 0; z < 4; z++) {
+                cuadricula[numerador] = baraja[z]
+                numerador = numerador + 2;
+            }
+            console.log(cuadricula)
+
+            //el for salta de a tres para armar la grilla
+            for (let r = 0; r < 9; r = r + 3) {
+                const row = document.createElement('div');
+                row.classList.add('row');
+
+                for (let i = 0; i < 3; i++) {
+                    const col = document.createElement('div');
+                    col.classList.add('col-4');
+                    if (cuadricula[i + r] != "null") {
+                        const imagen = document.createElement('img');
+                        imagen.src = "cards/" + cuadricula[i + r].img;
+                        col.appendChild(imagen);
+                    }
+                    row.appendChild(col);
+
+                }
+                container.appendChild(row);
+            }
+        }
+
+
+
+
+        function mezclarCartas(mazoElegido) {
+            'use strict'
+            const mezcla = window.knuthShuffle(mazoElegido.slice(0));
+            return mezcla;
+        }
+
+    </script>
+
+
+</body>
+
+</html>

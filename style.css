@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Literata:opsz@7..72&family=MedievalSharp&family=VT323&display=swap');
+
+.pagina {
+    text-align: center;
+    margin-top: 3rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+
+header{
+    margin-top: 2rem;
+    text-align: center;
+    font-family: 'MedievalSharp', cursive;
+}
+
+h1{
+    font-size: 4rem;
+}
+
+img {
+    width: 90%;
+}
+
+img:hover {
+    opacity: 0.5;
+    filter: saturate(200%);
+}

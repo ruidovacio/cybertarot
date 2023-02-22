@@ -20,6 +20,11 @@
 <body>
     <header>
         <h1>cybertarot</h1>
+        <a href="index.html?spread=3">three</a>
+        <a href="index.html?spread=4">four</a>
+        <a href="index.html?spread=5">five</a>
+        <a href="index.html?spread=6">six</a>
+        <a href="index.html?spread=7">seven</a>
     </header>
     <div class="pagina">
         <div class="container">
@@ -27,86 +32,7 @@
         </div>
     </div>
 
-    <script>
-
-        const container = document.querySelector('.container');
-
-        cargarCartas();
-
-        async function cargarCartas() {
-            const response = await fetch('tarot-images.json');
-            const tarot = await response.json();
-            //console.log(tarot.cards);
-
-            const mayores = tarot.cards.filter(carta => carta.arcana == 'Major Arcana');
-            //console.log(mayores);
-            const menores = tarot.cards.filter(carta => carta.arcana == 'Minor Arcana');
-            //console.log(menores);
-            const baraja = mezclarCartas(tarot.cards);
-            console.log(baraja);
-            hacerTablaCuatro(baraja);
-        }
-
-        async function hacerTablaCuatro(baraja) {
-            const row = document.createElement('div');
-            row.classList.add('row');
-
-            for (let i = 0; i < 3; i++) {
-                const col = document.createElement('div');
-                col.classList.add('col-sm-4');
-
-                const imagen = document.createElement('img');
-                imagen.src = "cards/" + baraja[i].img;
-                col.appendChild(imagen);
-                row.appendChild(col);
-            }
-
-            container.appendChild(row);
-        }
-
-        async function hacerTablaCuatro(baraja) {
-            //crear un array vacío
-            const cuadricula = [];
-            for (let i = 0; i < 9; i++) {
-                cuadricula.push("null");
-            }
-            //cada dos índices, empezando desde el 1, se llenan los espacios correspondientes
-            //a las cuatro puntas de esta tirada
-            let numerador = 1;
-            for (let z = 0; z < 4; z++) {
-                cuadricula[numerador] = baraja[z]
-                numerador = numerador + 2;
-            }
-            console.log(cuadricula)
-
-            //el for salta de a tres para armar la grilla
-            for (let r = 0; r < 9; r = r + 3) {
-                const row = document.createElement('div');
-                row.classList.add('row');
-
-                for (let i = 0; i < 3; i++) {
-                    const col = document.createElement('div');
-                    col.classList.add('col-md-4');
-                    if (cuadricula[i + r] != "null") {
-                        const imagen = document.createElement('img');
-                        imagen.src = "cards/" + cuadricula[i + r].img;
-                        col.appendChild(imagen);
-                    }
-                    row.appendChild(col);
-
-                }
-                container.appendChild(row);
-            }
-        }
-
-
-
-
-        function mezclarCartas(mazoElegido) {
-            'use strict'
-            const mezcla = window.knuthShuffle(mazoElegido.slice(0));
-            return mezcla;
-        }
+    <script src="main.js">
 
     </script>
 

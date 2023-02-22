@@ -5,7 +5,9 @@
     margin-top: 3rem;
     margin-left: 3rem;
     margin-right: 3rem;
+    margin-bottom: 1.5rem;
 }
+
 
 header{
     margin-top: 2rem;
@@ -13,12 +15,29 @@ header{
     font-family: 'MedievalSharp', cursive;
 }
 
+header a{
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    color: black;
+    text-decoration: none;
+    border-style: solid;
+    border-color: gray;
+    border-width: 0.15rem;
+}
+
+header a:hover{
+    background-color: black;
+    color: white;
+}
+
 h1{
     font-size: 4rem;
 }
 
 img {
-    width: 90%;
+    width: 70%;
 }
 
 img:hover {

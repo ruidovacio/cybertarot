@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Literata:opsz@7..72&family=MedievalSharp&family=VT323&display=swap");
 
+
 .pagina {
   text-align: center;
   margin-top: 3rem;
@@ -24,6 +25,7 @@ header a {
   border-style: solid;
   border-color: gray;
   border-width: 0.15rem;
+  transition-duration: 0.5s;
 }
 
 header a:hover {
@@ -35,9 +37,17 @@ h1 {
   font-size: 4rem;
 }
 
+h3 {
+  font-size: 2.5rem;
+}
+
 img {
-  width: 75%;
-  transition: 0.5s ease;
+  width: 100%;
+  display: block;
+}
+
+img:hover {
+  filter: saturate(200%);
 }
 
 @media (max-width: 991.98px) {
@@ -46,41 +56,57 @@ img {
   }
 }
 
-.cartabloque {
-  position: relative;
-}
-
-.overlay {
-  position: absolute;
-  bottom: 0%;
-  color: #f1f1f1;
-  width: 100%;
-  height: 100%;
-  transition: 0.5s ease;
-  opacity: 0;
-  color: white;
-  font-size: 20px;
-  text-align: center;
-}
-
-.cartabloque:hover .overlay {
-  opacity: 1;
-}
-
-.cartabloque:hover img {
-    filter: grayscale(100%);
-    opacity: 0.05;
-}
-
-.text {
-  color: black;
-  font-size: 1.5rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  text-align: center;
+.modal {
   font-family: "MedievalSharp", cursive;
+  text-align: justify;
+}
+
+.modal-header {
+  margin: 0 auto;
+
+}
+
+.modal-footer {
+  margin: 0 auto;
+}
+
+.modal-content {
+  background-color: whitesmoke;
+  border-radius: 0;
+  border-color: black;
+  border-width: 0.2rem;
+  max-width: auto;
+}
+
+.modal-body {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 1.5rem;
+  max-width: auto;
+  text-align: center;
+}
+
+.modal-title {
+  font-size: 2rem;
+}
+
+.btn {
+  background-color: black;
+  color: white;
+  border-radius: 0;
+  padding-right: 30px;
+}
+
+.btn:hover {
+  color: black;
+  background-color: white;
+}
+
+button {
+  text-align: center;
+  width: auto;
+  height: auto;
+  padding: 0;
+  border: none;
+  width: 70%;
+  box-shadow: none;
 }

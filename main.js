@@ -2,20 +2,24 @@ const container = document.querySelector('.container');
 const url_string = window.location.href;
 const url = new URL(url_string);
 const parametro = url.searchParams.get("spread");
+var myModal = new bootstrap.Modal(document.getElementById('myModal'))
+let dialogoAbierto = false;
 console.log(parametro);
+let lista = [];
+
 
 cargarCartas()
 
 async function cargarCartas() {
     const response = await fetch('tarot-images.json');
     const tarot = await response.json(); //este es el array con ambos arcanos, tarot.cards
-    const mayores = tarot.cards.filter(carta => carta.arcana == 'Major Arcana');
-    const menores = tarot.cards.filter(carta => carta.arcana == 'Minor Arcana');
-    const baraja = mezclarCartas(tarot.cards);
-    console.log(baraja);
-    hacerTabla(baraja, parametro);
-    //interactuar(baraja, parametro);
-    interactuar(baraja);
+    const mayores = await tarot.cards.filter(carta => carta.arcana == 'Major Arcana');
+    const menores = await tarot.cards.filter(carta => carta.arcana == 'Minor Arcana');
+    const baraja = await mezclarCartas(tarot.cards);
+    lista = baraja;
+    console.log(lista);
+    hacerTabla(baraja, parametro)//.then(
+    //interactuar(baraja));
 }
 
 async function hacerTabla(baraja, tirada) {
@@ -60,14 +64,14 @@ async function hacerTabla(baraja, tirada) {
         barajaTabulada[0] = separador.slice(0, 1);
         barajaTabulada[1] = separador.slice(1, 4);
         barajaTabulada[2] = separador.slice(4, 6);
-        barajaTabulada[3] = separador.slice(6,7);
+        barajaTabulada[3] = separador.slice(6, 7);
         const cantidadFilas = 4;
         displayCartas(barajaTabulada, cantidadFilas);
     }
 
 }
 
-function displayCartas(barajaTabulada, cantidadFilas) {
+async function displayCartas(barajaTabulada, cantidadFilas) {
     count = 0;
     for (i = 0; i < cantidadFilas; i++) {
         //se crean tantos rows como cantidad de filas tenga la barja luego de la tabulación
@@ -76,22 +80,15 @@ function displayCartas(barajaTabulada, cantidadFilas) {
         row.classList.add('justify-content-center');
         for (let j = 0; j < barajaTabulada[i].length; j++) {
             const col = document.createElement('div');
-            const cartabloque = document.createElement('div');
-            cartabloque.classList.add('cartabloque');
-            const overlay = document.createElement('div');
-            overlay.classList.add('overlay');
-            const texto = document.createElement('div');
-            texto.classList.add('text');
-            texto.innerHTML = "<h2>" + barajaTabulada[i][j].name + "</h2><p>" + barajaTabulada[i][j].fortune_telling + "</p>";
             const imagen = document.createElement('img');
+            const boton = document.createElement('button');
             imagen.src = "cards/" + barajaTabulada[i][j].img; //el contador [i][j], es el índice en la fila elegida
-            imagen.setAttribute("id", count);
+            boton.setAttribute("id", count);
+            boton.setAttribute("onClick", "accion(this.id)");
             console.log(count);
             count = count + 1;
-            cartabloque.appendChild(imagen);
-            cartabloque.appendChild(overlay);
-            overlay.appendChild(texto);
-            col.appendChild(cartabloque);
+            boton.appendChild(imagen);
+            col.appendChild(boton);
             col.classList.add('col-6');
             col.classList.add('col-md-4');
             row.appendChild(col);
@@ -100,45 +97,36 @@ function displayCartas(barajaTabulada, cantidadFilas) {
     }
 }
 
-// async function getElementsByIds(ids) {
-//     var idList = await ids.split(" ");
-//     var results = [], item;
-//     for (var i = 0; i < idList.length; i++) {
-//         item = document.getElementById(idList[i]);
-//         if (item) {
-//             results.push(item);
-//         }
-//     }
-//     console.log(results);
-// }
+async function accion(elementId) {
+    console.log(lista[elementId]);
+    const nombreCarta = document.getElementById('nombre-carta');
+    nombreCarta.innerText = lista[elementId].name;
+    const numeroCarta = document.getElementById('numero-carta');
+    numeroCarta.innerHTML = "# " + lista[elementId].number;
+    const tagsCarta = document.getElementById('tags-carta');
+    const formatear = String(lista[elementId].keywords)
+    tagsCarta.innerHTML = formatear.split(",").join("<br />");
+    const signoCarta = document.getElementById('signo-carta');
+    if (lista[elementId].Elemental !== undefined) {
+        signoCarta.innerHTML = lista[elementId].Elemental;
+    } else { signoCarta.innerHTML = "null"; }
+    myModal.toggle()
+}
 
-async function interactuar(baraja){
-    document.addEventListener('click', (e) =>
-    {
+async function interactuar(id) {
+    document.addEventListener('click', (e) => {
         let elementId = e.target.id;
         if (elementId != '') {
             console.log(baraja[elementId].name);
+
         }
         else {
             console.log("nada");
         }
     })
-    //elemento1 = await document.getElementById("0");
-    //elemento2 = await document.getElementById("1");
-    //elemento3 = await document.getElementById("2");
-    // }
-    // elemento1.onclick = function(){
-    //     console.log(baraja[0].name);
-    // }
-    // elemento2.onclick = function(){
-    //     console.log(baraja[1].name);
-    // }
-    // elemento3.onclick = function(){
-    //     console.log(baraja[2].name);
-    // }
 }
 
-function mezclarCartas(mazoElegido) {
+async function mezclarCartas(mazoElegido) {
     'use strict'
     const mezcla = window.knuthShuffle(mazoElegido.slice(0));
     return mezcla;

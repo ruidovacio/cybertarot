@@ -31,23 +31,23 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 id="nombre-carta"></h3>
-                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                </div>
-                <div class="modal-body">
-                    <h4 id="numero-carta"></h4><br>
-                    <p id="tags-carta"></p><br>
-                    <p id="signo-carta"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
+    <div id="miPopup" class="popup">
+        <div class="popup-contenido">
+            <div class="popup-texto">
+                <h2 id="nombre-carta">Carta</h2>
+                <!-- <h3>#1</h3> -->
+                <hr>
+                <img src="cards/c01.jpg" alt="" id="imagen-carta">
+                <h4 id="tipo-carta">Arquetipo</h4>
+                <p id="tipo-carta-texto">The Divine Madman</p>
+                <h4>Numerology</h4>
+                <p>0 (off the scale; pure potential)</p>
+                <h4>Keywords</h4>
+                <p id="keywords-carta"><mark>freedom</mark> <mark>faith</mark> <mark>inexperience</mark> <mark>innocence</mark></p>
+                <h4 id="simbologia-carta">Symbols</h4>
+                <p id="simbologia-carta-texto">Adam before the fall. Christ as a wandering holy madman. Deity wrapped in human flesh. The Holy Spirit.</p>
             </div>
+            <button class="popup-cerrar">Close</button>
         </div>
     </div>
 

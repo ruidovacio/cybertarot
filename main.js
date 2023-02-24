@@ -2,8 +2,9 @@ const container = document.querySelector('.container');
 const url_string = window.location.href;
 const url = new URL(url_string);
 const parametro = url.searchParams.get("spread");
-var myModal = new bootstrap.Modal(document.getElementById('myModal'))
-let dialogoAbierto = false;
+const popupObjeto = document.getElementById('miPopup');
+const popupContenido = document.querySelector('popup-contenido');
+const popupCerrar = document.getElementsByClassName('popup-cerrar')[0];
 console.log(parametro);
 let lista = [];
 
@@ -85,6 +86,7 @@ async function displayCartas(barajaTabulada, cantidadFilas) {
             imagen.src = "cards/" + barajaTabulada[i][j].img; //el contador [i][j], es el índice en la fila elegida
             boton.setAttribute("id", count);
             boton.setAttribute("onClick", "accion(this.id)");
+            boton.classList.add("botonimagen");
             console.log(count);
             count = count + 1;
             boton.appendChild(imagen);
@@ -99,32 +101,54 @@ async function displayCartas(barajaTabulada, cantidadFilas) {
 
 async function accion(elementId) {
     console.log(lista[elementId]);
+    popupObjeto.style.display = "block";
+    popupCerrar.onclick = function () {
+        popupObjeto.style.display = "none";
+    }
     const nombreCarta = document.getElementById('nombre-carta');
     nombreCarta.innerText = lista[elementId].name;
-    const numeroCarta = document.getElementById('numero-carta');
-    numeroCarta.innerHTML = "# " + lista[elementId].number;
-    const tagsCarta = document.getElementById('tags-carta');
-    const formatear = String(lista[elementId].keywords)
-    tagsCarta.innerHTML = formatear.split(",").join("<br />");
-    const signoCarta = document.getElementById('signo-carta');
-    if (lista[elementId].Elemental !== undefined) {
-        signoCarta.innerHTML = lista[elementId].Elemental;
-    } else { signoCarta.innerHTML = "null"; }
-    myModal.toggle()
+    const imagenCarta = document.getElementById('imagen-carta');
+    imagenCarta.src = "cards/" + lista[elementId].img;
+    const tipoCarta = document.getElementById('tipo-carta');
+    const tipoCartaTexto = document.getElementById('tipo-carta-texto')
+    if (lista[elementId].Archetype != undefined) {
+        tipoCarta.innerHTML = "Archetype";
+        tipoCartaTexto.innerHTML = lista[elementId].Archetype;
+    } else if (lista[elementId].Astrology != undefined) {
+        tipoCarta.innerHTML = "Astrology";
+        tipoCartaTexto.innerHTML = lista[elementId].Astrology;
+    } else if (lista[elementId].Elemental != undefined) {
+        tipoCarta.innerHTML = "Elemental";
+        tipoCartaTexto.innerHTML = lista[elementId].Elemental;
+    }
+    const keywordsCarta = document.getElementById('keywords-carta');
+    const formatear = String(lista[elementId].keywords);
+    keywordsCarta.innerHTML = formatear.split(",").join("<br>");
+    const simbologiaCarta = document.getElementById('simbologia-carta');
+    const simbologiaCartaTexto = document.getElementById('simbologia-carta-texto');
+    if (lista[elementId]["Mythical/Spiritual"] != undefined) {
+        simbologiaCarta.innerHTML = "Symbols";
+        simbologiaCartaTexto.innerHTML = lista[elementId]["Mythical/Spiritual"];
+    } else {
+        simbologiaCarta.innerHTML = "";
+        simbologiaCartaTexto.innerHTML= "";
+    }
 }
 
-async function interactuar(id) {
-    document.addEventListener('click', (e) => {
-        let elementId = e.target.id;
-        if (elementId != '') {
-            console.log(baraja[elementId].name);
 
-        }
-        else {
-            console.log("nada");
-        }
-    })
-}
+
+// async function interactuar(id) {
+//     document.addEventListener('click', (e) => {
+//         let elementId = e.target.id;
+//         if (elementId != '') {
+//             console.log(baraja[elementId].name);
+
+//         }
+//         else {
+//             console.log("nada");
+//         }
+//     })
+// }
 
 async function mezclarCartas(mazoElegido) {
     'use strict'

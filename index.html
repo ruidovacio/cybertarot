@@ -20,11 +20,23 @@
 <body>
     <header>
         <h1>cybertarot</h1>
-        <a href="index.html?spread=3">three</a>
+        <!-- <a href="index.html?spread=3">three</a>
         <a href="index.html?spread=4">four</a>
         <a href="index.html?spread=5">five</a>
         <a href="index.html?spread=6">six</a>
-        <a href="index.html?spread=7">seven</a>
+        <a href="index.html?spread=7">seven</a> -->
+        <button id="spread-3" class="botonspread" onclick="hacerTabla(3)">three</button>
+        <button id="spread-4" class="botonspread" onclick="hacerTabla(4)">four</button>
+        <button id="spread-5" class="botonspread" onclick="hacerTabla(5)">five</button>
+        <button id="spread-6" class="botonspread" onclick="hacerTabla(6)">six</button>
+        <button id="spread-7" class="botonspread" onclick="hacerTabla(7)">seven</button>
+        <br>
+        <input type="checkbox" class="checkspread" id="spread-check" name="spread-check" value="major">
+        <label for="spread-check">Only use Major Arcana</label>
+        <div class = "pageinfo">
+        <img src="load.png">
+        <h4>Pick a spread. <br> Then click a card to read its information.</h4>
+    </div>
     </header>
     <div class="pagina">
         <div class="container">

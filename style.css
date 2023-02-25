@@ -3,24 +3,26 @@
 
 .pagina {
   text-align: center;
-  margin-top: 3rem;
-  margin-left: 3rem;
-  margin-right: 3rem;
+  margin-top: 2rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
   margin-bottom: 1.5rem;
 }
 
 header {
   margin-top: 2rem;
+  margin-bottom: 0px;
   text-align: center;
   font-family: "MedievalSharp", cursive;
 }
 
-header a {
-  padding-left: 20px;
-  padding-right: 20px;
-  margin: 0 0.5rem;
-  font-size: 1.5rem;
+.botonspread {
+  margin: 0 6px;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  padding: 0 10px;
   color: black;
+  background-color: white;
   text-decoration: none;
   border-style: solid;
   border-color: gray;
@@ -28,7 +30,7 @@ header a {
   transition-duration: 0.5s;
 }
 
-header a:hover {
+.botonspread:hover {
   background-color: black;
   color: white;
 }
@@ -51,6 +53,7 @@ img:hover {
   width: auto;
   height: auto;
   padding: 0;
+  margin: 0;
   border: none;
   width: 70%;
   box-shadow: none;
@@ -78,6 +81,10 @@ img:hover {
   width: 40%;
   /* Could be more or less, depending on screen size */
   text-align: center;
+}
+
+.row {
+  overflow: auto;
 }
 
 .popup-cerrar {
@@ -138,6 +145,10 @@ img:hover {
   border-style: solid;
 }
 
+label {
+  font-size: 1rem;
+}
+
 mark {
   background-color:white;
   border-style: solid;
@@ -153,13 +164,33 @@ p mark{
   filter: grayscale(100%);
 }
 
+.pageinfo{
+  margin: 0 auto;
+  margin-top: 3rem;
+  border-style: solid;
+  border-color: gray;
+  border-width: 0.15rem;
+  max-width: 500px;
+  text-align: center;
+}
+
+.pageinfo img{
+  width: 40%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
 @media (max-width: 991.98px) {
   img {
-    width: 110%;
+    width: 100%;
+  }
+
+  .botonimagen {
+    width: 100%;
   }
 
   .popup-contenido {
-    width: 60%;
+    width: 90%;
   }
 
   .popup-texto img {
@@ -167,6 +198,10 @@ p mark{
     float: none;
     margin: 0 auto;
     padding-bottom: 15px;
+  }
+
+  .pageinfo {
+    max-width: 400px;
   }
 
 

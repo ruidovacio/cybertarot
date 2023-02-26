@@ -1,72 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/knuth-shuffle/1.0.8/index.min.js"
-        integrity="sha512-qATy7psZbGGnnfxVbxzRNBKp72F0+itAkN/pvzv0neBXJgJMvGWxG36qXK1PHWxfHTRbQmf97Fmwm4nIgn2iLw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/knuth-shuffle/1.0.8/index.min.js"
+      integrity="sha512-qATy7psZbGGnnfxVbxzRNBKp72F0+itAkN/pvzv0neBXJgJMvGWxG36qXK1PHWxfHTRbQmf97Fmwm4nIgn2iLw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <link rel="stylesheet" href="style.css" />
     <title>cybertarot</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>
-        <h1>cybertarot</h1>
-        <!-- <a href="index.html?spread=3">three</a>
-        <a href="index.html?spread=4">four</a>
-        <a href="index.html?spread=5">five</a>
-        <a href="index.html?spread=6">six</a>
-        <a href="index.html?spread=7">seven</a> -->
-        <button id="spread-3" class="botonspread" onclick="hacerTabla(3)">three</button>
-        <button id="spread-4" class="botonspread" onclick="hacerTabla(4)">four</button>
-        <button id="spread-5" class="botonspread" onclick="hacerTabla(5)">five</button>
-        <button id="spread-6" class="botonspread" onclick="hacerTabla(6)">six</button>
-        <button id="spread-7" class="botonspread" onclick="hacerTabla(7)">seven</button>
-        <br>
-        <input type="checkbox" class="checkspread" id="spread-check" name="spread-check" value="major">
-        <label for="spread-check">Only use Major Arcana</label>
-        <div class = "pageinfo">
-        <img src="load.png">
-        <h4>Pick a spread. <br> Then click a card to read its information.</h4>
-    </div>
+      <h1>cybertarot</h1>
+      <button id="spread-3" class="botonspread" onclick="hacerTabla(3)">
+        three
+      </button>
+      <button id="spread-4" class="botonspread" onclick="hacerTabla(4)">
+        four
+      </button>
+      <button id="spread-5" class="botonspread" onclick="hacerTabla(5)">
+        five
+      </button>
+      <button id="spread-6" class="botonspread" onclick="hacerTabla(6)">
+        six
+      </button>
+      <button id="spread-7" class="botonspread" onclick="hacerTabla(7)">
+        seven
+      </button>
+      <br />
+      <input
+        type="checkbox"
+        class="checkspread"
+        id="spread-check"
+        name="spread-check"
+        value="major"
+      />
+      <label for="spread-check">only use Major Arcana</label>
+      <div class="pageinfo">
+        <img src="load.png" />
+        <h4>
+          pick a spread <br />
+          then click a card to read its information
+        </h4>
+      </div>
     </header>
     <div class="pagina">
-        <div class="container">
-        </div>
+      <div class="container"></div>
     </div>
 
     <div id="miPopup" class="popup">
-        <div class="popup-contenido">
-            <div class="popup-texto">
-                <h2 id="nombre-carta">Carta</h2>
-                <!-- <h3>#1</h3> -->
-                <hr>
-                <img src="cards/c01.jpg" alt="" id="imagen-carta">
-                <h4 id="tipo-carta">Arquetipo</h4>
-                <p id="tipo-carta-texto">The Divine Madman</p>
-                <h4>Numerology</h4>
-                <p>0 (off the scale; pure potential)</p>
-                <h4>Keywords</h4>
-                <p id="keywords-carta"><mark>freedom</mark> <mark>faith</mark> <mark>inexperience</mark> <mark>innocence</mark></p>
-                <h4 id="simbologia-carta">Symbols</h4>
-                <p id="simbologia-carta-texto">Adam before the fall. Christ as a wandering holy madman. Deity wrapped in human flesh. The Holy Spirit.</p>
-            </div>
-            <button class="popup-cerrar">Close</button>
+      <div class="popup-contenido">
+        <div class="popup-texto">
+          <h2 id="nombre-carta">Carta</h2>
+          <!-- <h3>#1</h3> -->
+          <hr />
+          <img src="cards/c01.jpg" alt="" id="imagen-carta" />
+          <h4 id="arquetipo-carta">Archetype</h4>
+          <p id="arquetipo-carta-texto"></p>
+          <h4 id="tipo-carta"></h4>
+          <p id="tipo-carta-texto"></p>
+          <h4 id="numerology-carta">Numerology</h4>
+          <p id="numerology-carta-texto"></p>
+          <h4>Keywords</h4>
+          <p id="keywords-carta"></p>
+          <h4 id="simbologia-carta"></h4>
+          <p id="simbologia-carta-texto"></p>
         </div>
+        <button class="popup-cerrar">Close</button>
+      </div>
     </div>
 
-    <script src="main.js">
-    </script>
+    <script src="main.js"></script>
 
-
-</body>
-
+    <article class="interpretacion">
+            <h3>assemblage</h3>
+            <div id="contenido-interpretacion"></div>
+    </article>
+  </body>
 </html>

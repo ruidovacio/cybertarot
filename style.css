@@ -180,6 +180,25 @@ p mark{
   margin-bottom: 20px;
 }
 
+.interpretacion{
+  display: none;
+  font-family: "MedievalSharp", cursive;
+  text-align: center;
+}
+
+.interpretacion h3 {
+  font-size: 1.5rem;
+  color:gray
+}
+
+.interpretacion p {
+  font-family: monospace;
+}
+
+.invertir-imagen{
+  transform: scaleY(-1);
+}
+
 @media (max-width: 991.98px) {
   img {
     width: 100%;
@@ -201,7 +220,7 @@ p mark{
   }
 
   .pageinfo {
-    max-width: 400px;
+    max-width: 300px;
   }
 
 
